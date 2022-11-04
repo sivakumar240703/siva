@@ -1,0 +1,13 @@
+library(rvest)
+library(dplyr)
+link='https://www.infoplease.com/culture-entertainment/film/top-50-greatest-heroes-and-villains'
+web=read_html(link)
+rank=web%>%html_nodes("td:nth-child(1)")%>%html_text()
+View(rank)
+heros=web%>%html_nodes("td:nth-child(2)")%>%html_text()
+View(heros)
+villans=web%>%html_nodes("td~ td+ td i , tr:nth-child(3) td:nth-child(2)")%>%html_text()
+View(villans)
+total=data.frame(rank,heros,villans)
+View(total)
+write(total."heros")
